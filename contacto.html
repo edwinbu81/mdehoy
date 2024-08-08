@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Contacto</title>
+    <link rel="stylesheet" href="assets/stylescontacto.css">
+</head>
+<body>
+   
+    <header>
+        <img src="imagenes/logomiapp.jpg" alt="Logo de mi app" class="logo">
+        <nav>
+            <ul>
+             
+                <li><a href="menu_tienda.php">Menú Principal</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact">
+            <h1>Contáctanos</h1>
+            <div class="contact-container">
+                <div class="contact-box">
+                    <h2><a href="pqr.html">Formulario de P.Q.R.</a></h2>
+                </div>
+                <div class="contact-box">
+                    <h2>Líneas de Atención</h2>
+                    <p>Teléfono: +123 456 7890</p>
+                    <p>Email: mueblesdehoy@miapp.com</p>
+                </div>
+                <div class="contact-box">
+                    <h2>Buzón de Sugerencias</h2>
+                    <form action="submit_suggestion.php" method="POST">
+                        <label for="suggestion">Tu Sugerencia:</label>
+                        <textarea id="suggestion" name="suggestion" rows="5" required></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Muebles de hoy </p>
+    </footer>
+</body>
+</html>

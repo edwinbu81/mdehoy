@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pagos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>ESTAS A PUNTO DE COMPLETAR TU COMPRA</h1>
+    </header>
+    <main>
+        <div class="payment-container">
+            <h2>Total a Pagar:</h2>
+            <span id="monto-total"></span>
+            <p>¿Cual será su metodo de pago? Seleccione la opción de su preferencia</p><br>
+            <form id="form-pago" action="procesar-pago.html">
+                <div class="form-group">
+                    <label for="metodo-pago">Método de Pago:</label>
+                    <select id="metodo-pago" name="metodo-pago" required>
+                        <option value="debito">Tarjeta Débito</option>
+                        <option value="credito">Tarjeta Crédito</option>
+                        <option value="pse">PSE</option>
+                        <option value="efecty">Efecty</option>
+                        <option value="bancolombia">Convenio Bancolombia</option>
+                    </select>
+                </div>
+                
+                <div id="tarjeta-info" class="hidden">
+                    <div class="form-group">
+                        <label for="entidad-bancaria">Entidad Bancaria:</label>
+                        <input type="text" id="entidad-bancaria" name="entidad-bancaria">
+                    </div>
+                    <div class="form-group">
+                        <label for="numero-tarjeta">Número de la Tarjeta:</label>
+                        <input type="text" id="numero-tarjeta" name="numero-tarjeta">
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" name="cvv">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-vencimiento">Fecha de Vencimiento:</label>
+                        <input type="text" id="fecha-vencimiento" name="fecha-vencimiento">
+                    </div>
+                    <div id="cuotas-info" class="hidden">
+                        <div class="form-group">
+                            <label for="numero-cuotas">Número de Cuotas:</label>
+                            <select id="numero-cuotas" name="numero-cuotas">
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                                <option value="6">6</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="efecty-info" class="hidden">
+                    <button type="button" id="generar-codigo">Generar Código</button>
+                    <div class="form-group">
+                        <label for="codigo-efecty">Código Efecty:</label>
+                        <input type="text" id="codigo-efecty" name="codigo-efecty" readonly>
+                    </div>
+                </div>
+                
+                <div id="bancolombia-info" class="hidden">
+                    <p>Podrás realizar el pago en un corresponsal bancario de Bancolombia con el Número de convenio 67854 y tu número de cédula.</p>
+                </div>
+                
+                <button type="submit">Confirmar Pago</button>
+            </form>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var montoTotal = localStorage.getItem('montoTotal');
+            document.getElementById('monto-total').textContent = montoTotal;
+
+            var metodoPago = document.getElementById('metodo-pago');
+            var tarjetaInfo = document.getElementById('tarjeta-info');
+            var cuotasInfo = document.getElementById('cuotas-info');
+            var efectyInfo = document.getElementById('efecty-info');
+            var bancolombiaInfo = document.getElementById('bancolombia-info');
+
+            metodoPago.addEventListener('change', function() {
+                if (metodoPago.value === 'credito') {
+                    tarjetaInfo.classList.remove('hidden');
+                    cuotasInfo.classList.remove('hidden');
+                    efectyInfo.classList.add('hidden');
+                    bancolombiaInfo.classList.add('hidden');
+                } else if (metodoPago.value === 'debito') {
+                    tarjetaInfo.classList.remove('hidden');
+                    cuotasInfo.classList.add('hidden');
+                    efectyInfo.classList.add('hidden');
+                    bancolombiaInfo.classList.add('hidden');
+                } else if (metodoPago.value === 'efecty') {
+                    tarjetaInfo.classList.add('hidden');
+                    cuotasInfo.classList.add('hidden');
+                    efectyInfo.classList.remove('hidden');
+                    bancolombiaInfo.classList.add('hidden');
+                } else if (metodoPago.value === 'bancolombia') {
+                    tarjetaInfo.classList.add('hidden');
+                    cuotasInfo.classList.add('hidden');
+                    efectyInfo.classList.add('hidden');
+                    bancolombiaInfo.classList.remove('hidden');
+                } else {
+                    tarjetaInfo.classList.add('hidden');
+                    cuotasInfo.classList.add('hidden');
+                    efectyInfo.classList.add('hidden');
+                    bancolombiaInfo.classList.add('hidden');
+                }
+            });
+
+            document.getElementById('generar-codigo').addEventListener('click', function() {
+                var codigo = generarCodigoUnico();
+                document.getElementById('codigo-efecty').value = codigo;
+            });
+
+            function generarCodigoUnico() {
+                var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var codigo = '';
+                for (var i = 0; i < 10; i++) {
+                    codigo += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return codigo;
+            }
+            document.getElementById('form-pago').addEventListener('submit', function(e) {
+                e.preventDefault(); // Evita el envío del formulario por defecto
+
+                var metodoPago = document.getElementById('metodo-pago').value;
+                var detallesPago = '';
+
+                // Dependiendo del método de pago, se agregan detalles específicos
+                if (metodoPago === 'credito' || metodoPago === 'debito') {
+                    detallesPago = 'Entidad Bancaria: ' + document.getElementById('entidad-bancaria').value +
+                                    ', Número de Tarjeta: ' + document.getElementById('numero-tarjeta').value +
+                                    ', CVV: ' + document.getElementById('cvv').value +
+                                    ', Fecha de Vencimiento: ' + document.getElementById('fecha-vencimiento').value;
+                    if (metodoPago === 'credito') {
+                        detallesPago += ', Número de Cuotas: ' + document.getElementById('numero-cuotas').value;
+                    }
+                } else if (metodoPago === 'efecty') {
+                    detallesPago = 'Código Efecty: ' + document.getElementById('codigo-efecty').value;
+                } else if (metodoPago === 'bancolombia') {
+                    detallesPago = 'Número de Convenio: 67854 y Número de Cédula';
+                }
+
+                // Guardar los datos en localStorage
+                localStorage.setItem('metodoPago', metodoPago);
+                localStorage.setItem('detallesPago', detallesPago);
+
+                // Redirigir al archivo de procesamiento de pago
+                window.location.href = 'procesar-pago.html';
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: url('imagenes/logomiapp.jpg') no-repeat top right;
+            background-size: 250px;
+            min-height: 100vh;
+            position: absolute;
+        }
+        
+        header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        #monto-total {
+            font-size: 1.5em;
+            color: #28a745;
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
+</body>
+</html>
+

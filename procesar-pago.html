@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesar Pago</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Confirmación de Pago</h1>
+    </header>
+    <main>
+        <div class="confirmation-container">
+            <h2>Pago Procesado</h2>
+            <p>Gracias por tu compra. Tu pago ha sido procesado con éxito.</p>
+            
+            <div id="resumen-pago">
+                <h3>Resumen del Pago</h3>
+                <p><strong>Monto Total:</strong> <span id="monto-total"></span></p>
+                <p><strong>Método de Pago:</strong> <span id="metodo-pago"></span></p>
+                <p><strong>Detalles del Pago:</strong> <span id="detalles-pago"></span></p>
+            </div>
+            
+            <a href="menu_tienda.php">Volver a la Página Principal</a>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recuperar los datos del pago del almacenamiento local
+            var montoTotal = localStorage.getItem('montoTotal');
+            var metodoPago = localStorage.getItem('metodoPago');
+            var detallesPago = localStorage.getItem('detallesPago');
+
+            // Mostrar los datos en la página
+            document.getElementById('monto-total').textContent = montoTotal;
+            document.getElementById('metodo-pago').textContent = metodoPago;
+            document.getElementById('detalles-pago').textContent = detallesPago;
+
+            // Limpiar el almacenamiento local después de mostrar los datos
+            localStorage.removeItem('montoTotal');
+            localStorage.removeItem('metodoPago');
+            localStorage.removeItem('detallesPago');
+        });
+    </script>
+    <style>
+        .confirmation-container {
+            text-align: center;
+            padding: 20px;
+        }
+        #resumen-pago {
+            margin: 20px 0;
+        }
+    </style>
+</body>
+</html>

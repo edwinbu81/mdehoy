@@ -1,0 +1,197 @@
+/* se define el estilo general de la pagina */
+*::after,
+*::before,
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* se define el estilo del cuerpo */
+
+body {
+    margin: auto;
+    max-width: 1200px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+    color: rgb(93, 182, 182);
+    }
+
+    
+
+/* ahora se da estilo al header */
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 40px 0;
+}
+.container-icon{
+    position: relative;
+}
+.count-products{
+    position: absolute;
+    top: 55%;
+    right: 0;
+    background-color: rgb(12, 218, 56);
+    color: white;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 50%;
+    
+}
+#contador-productos{
+    font-size: 11px;
+}
+
+    .container-cart-products{
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    background-color: white;
+    width: 400px;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+}
+
+/* daremos estilo al container */
+.container-items{
+    display: grid;
+    grid-template-columns: repeat(4, 0fr);
+    gap: 20px;
+}
+
+/* daremos estilo al item */
+.item{
+    border-radius: 10px;
+}
+.item:hover{ /* para darle un efecto */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.30);
+}
+
+/* ahora se da el tamaño a las imagenes */
+.item img{
+  width: 250px; /* Ajusta el ancho  */
+  height: 250px; /* Ajusta la altura */
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  transition: all .5s;
+}
+
+.item:hover img{
+        transform: scale(1.1);
+    }
+
+.item figure{
+        overflow: hidden;
+    }
+/* se define el tamaño del icono */
+.icon-cart {
+    width: 35px;
+    stroke: black;
+}
+
+.icon-cart:hover{
+    cursor: pointer;
+}
+
+.price{
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* daremos estilo a la informacion del producto */
+.info-product{
+    padding: 15px 30px;
+    border-radius: 15px 15px 0 0;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.info-product button{
+    border: none;
+    background: none;
+    background-color: rgb(6, 96, 17);
+    color: white;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.cart-product{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+
+}
+.info-cart-product{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.8;
+}
+.titulo-producto-carrito{
+    font-size: 20px;
+}
+
+.precio-producto-carrito{
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.cantidad-producto-carrito{
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.cart-total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+.cart-total h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.total-pagar{
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.hidden-cart{
+    display: none;
+}
+.icon-close {
+    width: 30px;
+    height: 30px;
+}
+
+.icon-close:hover{
+    stroke: red;
+    cursor: pointer;
+}
+
+.btn-realizar-pago {
+    background-color: rgb(50, 215, 231);
+    color: white;
+    padding: 15px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Agrega bordes redondeados para mejor apariencia */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.btn-realizar-pago:hover {
+    background-color: rgb(237, 32, 32); /* Cambia el color al pasar el cursor por encima */
+}
+

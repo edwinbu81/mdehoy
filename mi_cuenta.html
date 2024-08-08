@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta</title>
+    <link rel="stylesheet" href="stylecuenta.css">
+</head>
+<body>
+    <header>
+        <img src="imagenes/logomiapp.jpg" alt="Logo de la App" class="logo">
+    </header>
+    
+    </nav>
+    <main class="account-container">
+        <div class="profile-avatar">
+            <img src="imagenes/avatar imagen.jfif" alt="Foto de Perfil" class="avatar">
+        </div>
+        <div class="profile-info">
+            <label for="nombre">Nombre:</label>
+            <span id="nombre">Juan</span>
+            <label for="apellido">Apellido:</label>
+            <span id="apellido">Pérez</span>
+            <label for="correo">Correo:</label>
+            <span id="correo">juan.perez@example.com</span>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" value="Calle 123, Ciudad">
+            <button id="editar-info" onclick="editarDireccion()">Guardar Cambios</button>
+        </div>
+    </main>
+    <nav>
+        <ul>
+         
+            <li><a href="menu_tienda.php">Menú Principal</a></li>
+        </ul>
+    <script>
+        function editarDireccion() {
+            const nuevaDireccion = document.getElementById('direccion').value;
+            alert('Dirección actualizada a: ' + nuevaDireccion);
+            // Aquí puedes agregar lógica para enviar la actualización al servidor
+        }
+    </script>
+</body>
+</html>

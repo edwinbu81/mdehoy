@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    position: relative;
+}
+
+header {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 150px;
+}
+
+.account-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+span {
+    margin-bottom: 10px;
+}
+
+input {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#regresar-menu {
+    margin-top: 20px;
+    background-color: #6c757d;
+}
+
+#regresar-menu:hover {
+    background-color: #5a6268;
+}
+nav {
+    background-color: #007BFF; /* Color de fondo del menú */
+    padding: 10px 20px; /* Espaciado interno */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+nav ul {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el espaciado */
+    margin: 0; /* Elimina el margen */
+    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos en el contenedor */
+}
+
+nav li {
+    margin: 0 15px; /* Espaciado entre los elementos de la lista */
+}
+
+nav a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: #ffffff; /* Color del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    font-weight: bold; /* Fuente en negrita */
+    padding: 10px 15px; /* Espaciado interno del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para los cambios de color */
+}
+
+nav a:hover {
+    background-color: #0056b3; /* Color de fondo cuando el ratón está sobre el enlace */
+    color: #ffffff; /* Color del texto en hover */
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Cambia la dirección de los elementos a columna en pantallas pequeñas */
+    }
+
+    nav li {
+        margin: 5px 0; /* Reduce el margen entre los elementos de la lista */
+    }
+}
+
+
